@@ -86,9 +86,9 @@ function lowInventory() {
     if (err) throw err;
     for (var i = 0; i < res.length; i++) {
       console.log(
-        "Product ID: " +
+        "\nProduct ID: " +
           res[i].id +
-          "Item: " +
+          "\nItem: " +
           res[i].product_name +
           "\nDepartment: " +
           res[i].department_name +

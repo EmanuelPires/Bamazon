@@ -21,7 +21,7 @@ connection.connect(function(err) {
 });
 
 function runSale() {
-  console.log("Hello check out our products!\n");
+  console.log("\nHello check out our products!\n");
   var query = "SELECT * FROM products";
   connection.query(query, function(err, res) {
     for (var i = 0; i < res.length; i++) {
@@ -73,7 +73,6 @@ function customerBuy() {
           }
         }
         if (chosenItem.stock_quantity > parseInt(answer.quantity)) {
-          console.log(chosenItem.stock_quantity);
           connection.query(
             "UPDATE products SET ? WHERE?",
             [
@@ -87,7 +86,13 @@ function customerBuy() {
             ],
             function(error) {
               if (error) throw err;
-              console.log("\nThank you for your purchase!\n");
+              var purchaseTotal = answer.quantity * chosenItem.price;
+              console.log(
+                "\nThank you for your purchase!\n" +
+                  "Your purchase total was: $" +
+                  purchaseTotal
+              );
+
               runSale();
             }
           );
